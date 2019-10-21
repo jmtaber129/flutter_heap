@@ -2,7 +2,7 @@ name: flutter_heap
 description: A new flutter plugin project.
 version: 0.0.1
 author: James Taber
-homepage: github.com/jmtaber129/flutter_heap
+homepage: https://github.com/jmtaber129/flutter_heap
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
