@@ -19,12 +19,44 @@ public class FlutterHeapPlugin implements MethodCallHandler {
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
-    if (call.method.equals("track")) {
-      String event = call.argument("type");
-      Map<String, String> props = call.argument("properties");
-      Heap.track(event, props);
-    } else {
-      result.notImplemented();
+    switch (call.method) {
+      case "track": {
+        String event = call.argument("type");
+        Map<String, String> props = call.argument("properties");
+        Heap.track(event, props);
+        break;
+      }
+      case "identify": {
+        String identity = call.argument("identity");
+        Heap.identify(identity);
+        break;
+      }
+      case "resetIdentity": {
+        Heap.resetIdentity();
+        break;
+      }
+      case "addUserProperties": {
+        Map<String, String> props = call.argument("properties");
+        Heap.addUserProperties(props);
+        break;
+      }
+      case "addEventProperties": {
+        Map<String, String> props = call.argument("properties");
+        Heap.addEventProperties(props);
+        break;
+      }
+      case "removeEventProperty": {
+        String property = call.argument("property");
+        Heap.removeEventProperty(property);
+        break;
+      }
+      case "clearEventProperties": {
+        Heap.clearEventProperties();
+        break;
+      }
+      default: {
+        result.notImplemented();
+      }
     }
   }
 }
